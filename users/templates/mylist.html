@@ -1,0 +1,26 @@
+{% extends "master.html" %}
+
+{% block title %}
+Favorites
+{% endblock %}
+
+
+{% block content %}
+<div style="width:82%; margin: 20px auto">
+  <h1>Here's a list of your favorite questions:</h1>
+
+  <ul style="list-style-type: none; width: 90%; padding-inline-start:0px;">
+    {% for question in questions %}
+    <li id="question-listing" class="{{question.category}}">
+      <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+
+      <div>
+        <h5 class="{{question.category}}">{{question.formatted_category}}</h5>
+        <h5>by: <a href="{% url 'user_details' username=question.user.username %}">{{question.user.username}}</a></h5>
+      </div>
+      <h4 style="display:inline-block"><a href="{{ question.id }}">{{ question.question }}</a></h4>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

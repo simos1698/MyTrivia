@@ -1,0 +1,20 @@
+{% extends "master.html" %}
+
+{% block title %}
+  Users
+{% endblock %}
+
+
+{% block content %}
+  <h1>Users</h1>
+  
+  <ul>
+    {% for x in myusers %}
+      <li>
+        <h4 style="display:inline-block">{{x.id}}. </h4>
+        <h4 style="display:inline-block"><a href="{{ x.username }}">{{ x.username }}</a></h4>
+      </li> 
+      <hr>
+    {% endfor %}
+  </ul>
+{% endblock %}

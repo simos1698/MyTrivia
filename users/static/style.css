@@ -1,0 +1,204 @@
+@font-face {
+    font-family: 'Montserrat';
+    src: url('/fonts/montserrat/Montserrat-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+p {
+    font-size: 12pt;
+}
+
+button, input{
+    border-radius: 6px;
+    border: 1px solid #717171;
+}
+
+#logo{
+    font-size: 16pt;
+    text-decoration: none;
+    color: white;
+}
+
+#menu {
+    width: 100vw;
+    display: flex;
+    justify-content: space-around;
+    background-color: #722991; 
+    align-items: center;
+}
+
+menu a {
+    text-decoration: none;
+    color: white;
+}
+
+#menu #pages a{
+    text-decoration: none;
+    color: white;
+    padding: 1.4vw;
+}
+
+#login{
+    display: flex;
+    align-items: center;
+}
+
+#login a{
+    text-decoration: none;
+    color: white;
+    padding: 0.9vw;
+    font-size: 10pt;
+}
+
+#welcome{
+    position: relative;
+    height: 30vh;
+    align-items: center;
+    display: flex;
+}
+
+#welcome::before {
+    content: "";
+    background-image: url("background.png");
+    background-position: center;
+    background-size: 110vw;
+    opacity: 30%;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    z-index: -3;
+}
+
+#welcome #rounded{
+    background-color: white;
+    width: 45vw;
+    max-width: 500px;
+    margin: auto;
+    padding: 3vh 4vw;
+    text-align: center;
+    border-radius: 18px;
+}
+
+#home-main{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100vw;
+}
+
+#home-main #categories{
+    display: flex;
+    flex-direction:column;
+}
+
+#home-main #categories span{
+    display: flex;
+    flex-direction:column;
+}
+
+#home-main .topic-button{
+    padding: 8px 10px;
+    font-weight: bold;
+    text-decoration: none;
+    display: block;
+    width: 70%;
+    margin: 10px auto;
+    color: rgb(28, 28, 28);
+    text-align: center;
+    font-size: 11pt;
+    border-radius: 5px;
+}
+
+.messages{
+    display: block;
+    background-color: rgb(255, 198, 198);
+    padding: 8px;
+}
+
+#question-listing{
+    border: 1px solid;
+    background-color: rgb(211, 211, 211);
+    margin-bottom: 10px;
+    padding-inline: 8px;
+}
+
+#add_question_form{
+    display: block;
+    margin: 5vh auto;
+    width: 80%;
+    text-align: center;
+}
+
+#add_question_form form{
+    background-color: #d6d6d6;
+    border-radius: 5px;
+    width: fit-content;
+    padding: 16px 5px;
+    margin: auto;
+}
+
+.geography{
+    border-color: rgb(40, 165, 227)!important; 
+    color: rgb(54, 124, 159) !important;
+}
+
+.entertainment{
+    border-color: rgb(212, 49, 227) !important; 
+    color: rgb(124, 62, 130) !important;
+}
+
+#question-listing.history{
+    border-color: rgb(223, 219, 82)!important; 
+    color: rgb(124, 121, 25) !important;
+}
+
+#question-listing.literature{
+    border-color: rgb(115, 39, 185)!important; 
+    color: rgb(79, 37, 118) !important;
+}
+
+#question-listing.science{
+    border-color: rgb(82, 150, 30)!important; 
+    color: rgb(63, 107, 30) !important;
+}
+
+#question-listing.sports{
+    border-color: rgb(225, 162, 16)!important; 
+    color: rgb(138, 104, 25) !important;
+}
+
+#question-listing div{
+    display: flex;
+    justify-content: space-between;
+}
+
+#question-listing div button{
+    height: fit-content;
+    padding: 7px 5px;
+    align-self: center;
+}
+
+#question-listing a{
+    color: rgb(32, 32, 32);
+}
+
+#question-listing #heart{
+    transition: transform 150ms, fill 320ms;
+    width: 50px;
+}
+
+#question-listing #heart:hover{
+    transform: scale(110%);
+}
+
+#question-listing.liked #heart{
+    fill: #722991;
+}

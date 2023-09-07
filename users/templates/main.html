@@ -1,0 +1,71 @@
+{% extends "master.html" %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+
+<div id="welcome">
+  <div id="rounded">
+    <h1>Welcome to MyTrivia</h1>
+    <p>This is an open-source collection of Trivia questions. You can interact with questions by adding or removing them from your
+      favorites, or add your own questions to our database!</p>
+  </div>
+</div>
+
+
+
+<div id="home-main">
+
+  <div id="recent">
+    <h2>Recently added questions:</h2>
+
+    <ul style="list-style-type: none; width: 90%; padding: 0;">
+      {% for question in questions %}
+      {% if question in favorites %}
+      <li style="width: 100%" id="question-listing" class="{{question.category}} liked">
+      {% else %}
+      <li style="width: 100%" id="question-listing" class="{{question.category}}">
+      {% endif %}
+      <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+
+        <div>
+          <h5 class="{{question.category}}">{{question.formatted_category}}</h5>
+          <h5>by: <a href="{% url 'user_details' username=question.user.username %}">{{question.user.username}}</a></h5>
+        </div>
+        <div>
+          <h4><a href="questions/{{ question.id }}">{{ question.question }}</a></h4>
+          <svg id="heart" onclick="toggleFavorite(this, {{ question.id }}, 'home')" xmlns="http://www.w3.org/2000/svg"
+            fill="gray" viewBox="0 0 24 24" stroke-width="1.5" class="w-6 h-6">
+            <path stroke-linejoin="round"
+              d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+          </svg>
+        </div>
+
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div id="categories">
+    <h2 style="text-align: center;">Topics:</h2>
+    <p>View the questions by category:</p>
+
+    <span>
+      <a href="questions/geography" style="background-color: rgb(40, 165, 227)" class="topic-button">Geography</a>
+      <a href="questions/entertainment" style="background-color: rgb(212, 49, 227)"
+        class="topic-button">Entairtaiment</a>
+      <a href="questions/history" style="background-color: rgb(223, 219, 82)" class="topic-button">History</a>
+      <a href="questions/literature" style="background-color: rgb(115, 39, 185)" class="topic-button">Art &
+        Literature</a>
+      <a href="questions/science" style="background-color: rgb(82, 150, 30)" class="topic-button">Science & Nature</a>
+      <a href="questions/sports" style="background-color: rgb(225, 162, 16)" class="topic-button">Sport & Leisure</a>
+    </span>
+  </div>
+</div>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "master.html"%}
+
+{% block title %}
+  Login
+{% endblock %}
+
+<p>lmao</p>
+{% include "messages.html" %}
+
+{% block content %}
+
+{% include "messages.html" %}
+
+<form method="post">
+    {% csrf_token%}
+    {{form}}
+    <button type="submit">Login</button>
+    <p>Don't have an account? Create one <a href="/register">here</a></p>
+</form>
+
+{% endblock %}

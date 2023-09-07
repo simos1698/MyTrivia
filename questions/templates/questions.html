@@ -1,0 +1,60 @@
+{% extends "master.html" %}
+
+{% block title %}
+  Questions
+{% endblock %}
+
+
+{% block content %}
+  <div style="width:80%; margin: auto;">
+  <h1>All Questions:</h1>
+
+  <label for="category">Category:</label>
+  <select id="category_menu" name="category">
+    <option value="">All</option>
+    {% for key,value in categories.items%}
+      <option value="{{ key }}" 
+      {% if key == filter %}
+        selected
+      {% endif %}> {{ value }}</option>
+    {% endfor %}
+  </select>
+
+
+  <ul style="list-style-type: none; padding-inline-start: 0;">
+    {% for question in questions %}
+      {% if filter == "all" or question.category == filter %}
+        {% if question not in favorites %}
+        <li style="width: 100%" id="question-listing" class="{{question.category}}">
+        {% else %}
+        <li style="width: 100%" id="question-listing" class="{{question.category}} liked">
+        {% endif %}
+          <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+
+          <div>
+            <h5 class="{{question.category}}">{{question.formatted_category}}</h5>
+            <h5>by: <a href="{% url 'user_details' username=question.user.username %}">{{question.user.username}}</a></h5>
+          </div>
+          <div>
+            <h4><a href="{{ question.id }}">{{ question.question }}</a></h4>
+            <svg id="heart" onclick="toggleFavorite(this, {{ question.id }}, {{filter}})" xmlns="http://www.w3.org/2000/svg" fill="gray"
+              viewBox="0 0 24 24" stroke-width="1.5" class="w-6 h-6">
+              <path stroke-linejoin="round"
+                d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+            </svg>
+          </div>
+        </li> 
+      {% endif %}
+    {% endfor %}
+  </ul>
+  </div>
+
+  <script>
+    const categorySelect = document.querySelector('#category_menu');
+  
+    categorySelect.addEventListener('change', (event) => {
+      const selectedOption = event.target.value;
+      window.location.href = `/questions/${selectedOption}`;
+    });
+  </script>
+{% endblock %}

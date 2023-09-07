@@ -1,0 +1,23 @@
+{% extends "master.html" %}
+
+{% block title %}
+  Question {question.id}
+{% endblock %}
+
+
+{% block content %}
+
+  <div id="question-listing" class="{{question.category}}" style="margin:2vw ">
+
+    <div>
+      <h5 class="{{question.category}}">{{question.formatted_category}}</h5>
+      <h5>by: <a href="{% url 'user_details' username=question.user.username %}">{{question.user.username}}</a></h5>
+    </div>
+
+    <h2 >{{question.question}}</h2>
+    <p>Answer:</p>
+    <h4 >{{ question.answer }}</h4>
+
+  </div> 
+<p style="margin: 2vw">Back to the <a href="/questions/all">list</a></p>
+{% endblock %}

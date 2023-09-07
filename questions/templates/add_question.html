@@ -1,0 +1,20 @@
+{% extends "master.html" %}
+
+{% block title %}
+Question {question.id}
+{% endblock %}
+
+{% block content %}
+
+<div id="add_question_form">
+  <h2>Add a question to our database:</h2>
+  <p>Please always check your sources before submiting!</p>
+
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Add Question">
+  </form>
+</div>
+
+{% endblock %}
